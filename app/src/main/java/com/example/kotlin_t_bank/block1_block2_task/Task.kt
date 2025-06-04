@@ -6,16 +6,33 @@ fun main() {
     val name: String = readLine() ?: "Guest"
 
     println("Введите ваш возраст")
-    val ageInput = readLine()
-    val age: Int = ageInput?.toIntOrNull() ?: 0
+    var ageInput = readLine()
+    var age: Int = ageInput?.toIntOrNull() ?: 0
+    while(!(age in 14..70)){
+        println("Вы ввели возраст меньше 14 или 70 лет, попробуйте еще раз")
+        ageInput = readLine()
+        age = ageInput?.toIntOrNull() ?: 14
+    }
 
     println("Введите ваш рост в 'м'")
-    val heightInput = readLine()
-    val height: Double = heightInput?.toDoubleOrNull() ?: 0.0
+    var heightInput = readLine()
+    var height: Double = heightInput?.toDoubleOrNull() ?: 0.0
+
+    while(!(height in 1.4..2.3)){
+        println("Вы ввели рост меньше 1.4 или 2.3 метра, попробуйте еще раз")
+        heightInput = readLine()
+        height = heightInput?.toDoubleOrNull() ?: 1.4
+    }
 
     println("Введите ваш вес в кг")
-    val weightInput = readLine()
-    val weight: Double = weightInput?.toDoubleOrNull() ?: 0.0
+    var weightInput = readLine()
+    var weight: Double = weightInput?.toDoubleOrNull() ?: 50.0
+
+    while(!(weight in 50.0..160.0)){
+        println("Вы ввели вес меньше 50 или 160 кг, попробуйте еще раз")
+        weightInput = readLine()
+        weight = weightInput?.toDoubleOrNull() ?: 50.0
+    }
 
     println("Введите ваше любимое число целое или с точкой")
     val favouriteInput = readLine()
@@ -98,15 +115,17 @@ fun main() {
         }
     }
 
-    println("""
+    println(
+        """
         =========================
         Имя: $name
         Возраст: $age.
         Рост: $height м, Вес: $weight кг
         BMI: $bmiFormatted (категория $bmiCategory)
-        Совершеннолетний: ${if(isAdult)  "да" else "нет"}
+        Совершеннолетний: ${if (isAdult) "да" else "нет"}
         Любимое число: $favourite (тип: ${favourite::class.simpleName})
         Введен символ: ${favouriteChar}
         =========================
-    """.trimIndent())
+    """.trimIndent()
+    )
 }
